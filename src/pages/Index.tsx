@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Search, MapPin, Building, Clock, Users, TrendingUp, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -140,39 +141,53 @@ const Index = () => {
             <p className="text-gray-600">Hand-picked jobs from top companies</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredJobs.map((job) => (
-              <Card key={job.id} className="hover:shadow-lg transition-shadow duration-300 border-0 shadow-md">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="text-2xl">{job.logo}</div>
-                      <div>
-                        <CardTitle className="text-lg">{job.title}</CardTitle>
-                        <CardDescription className="text-gray-600">{job.company}</CardDescription>
-                      </div>
-                    </div>
-                    <Badge variant="secondary">{job.type}</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center text-gray-600">
-                      <MapPin size={16} className="mr-2" />
-                      <span className="text-sm">{job.location}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold text-green-600">{job.salary}</span>
-                      <div className="flex items-center text-gray-500 text-sm">
-                        <Clock size={14} className="mr-1" />
-                        {job.posted}
-                      </div>
-                    </div>
-                    <Button className="w-full mt-4">View Details</Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="max-w-5xl mx-auto">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {featuredJobs.map((job) => (
+                  <CarouselItem key={job.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                    <Card className="hover:shadow-lg transition-shadow duration-300 border-0 shadow-md h-full">
+                      <CardHeader>
+                        <div className="flex items-start justify-between">
+                          <div className="flex items-center space-x-3">
+                            <div className="text-2xl">{job.logo}</div>
+                            <div>
+                              <CardTitle className="text-lg">{job.title}</CardTitle>
+                              <CardDescription className="text-gray-600">{job.company}</CardDescription>
+                            </div>
+                          </div>
+                          <Badge variant="secondary">{job.type}</Badge>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3">
+                          <div className="flex items-center text-gray-600">
+                            <MapPin size={16} className="mr-2" />
+                            <span className="text-sm">{job.location}</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="font-semibold text-green-600">{job.salary}</span>
+                            <div className="flex items-center text-gray-500 text-sm">
+                              <Clock size={14} className="mr-1" />
+                              {job.posted}
+                            </div>
+                          </div>
+                          <Button className="w-full mt-4">View Details</Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           </div>
 
           <div className="text-center mt-12">
