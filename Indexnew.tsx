@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -57,7 +58,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mesh-gradient"></div> {/* Add the mesh gradient here */}
       {/* Header */}
       <header className="border-b bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
